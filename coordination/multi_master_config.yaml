@@ -1,0 +1,38 @@
+# ROS 2 Multi-Robot Communication Configuration
+# DDS domain isolation per robot
+# Map topics bridged to global namespace
+
+robots:
+  - id: robot_0
+      ros_domain_id: 0
+          ip: 192.168.1.10
+              topics_to_bridge:
+                    - /robot_0/map
+                          - /robot_0/pose
+                                - /robot_0/odom
+                                      - /robot_0/scan
+
+                                        - id: robot_1
+                                            ros_domain_id: 1
+                                                ip: 192.168.1.11
+                                                    topics_to_bridge:
+                                                          - /robot_1/map
+                                                                - /robot_1/pose
+                                                                      - /robot_1/odom
+                                                                            - /robot_1/scan
+
+                                                                              - id: robot_2
+                                                                                  ros_domain_id: 2
+                                                                                      ip: 192.168.1.12
+                                                                                          topics_to_bridge:
+                                                                                                - /robot_2/map
+                                                                                                      - /robot_2/pose
+                                                                                                            - /robot_2/odom
+                                                                                                                  - /robot_2/scan
+                                                                                                                  
+                                                                                                                  map_merge:
+                                                                                                                    output_topic: /merged_map
+                                                                                                                      merge_rate_hz: 1.0
+                                                                                                                        consistency_threshold_m: 0.05
+                                                                                                                        
+                                                                                                                        global_bridge_domain_id: 10
