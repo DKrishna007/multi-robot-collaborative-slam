@@ -1,0 +1,52 @@
+{
+    "experiment": "Multi-Robot Collaborative SLAM - 3 Agent System",
+    "description": "3-agent cooperative SLAM using ROS 2 and RTAB-Map with Distributed EKF",
+    "agents": {
+          "count": 3,
+          "communication": "ROS 2 DDS topics",
+          "slam_algorithm": "RTAB-Map",
+          "pose_fusion": "Distributed EKF"
+    },
+    "mapping_performance": {
+          "single_robot_baseline": {
+                  "mapping_time_min": 18.5,
+                  "coverage_pct": 76.3,
+                  "map_accuracy_m": 0.07
+          },
+          "3_robot_collaborative": {
+                  "mapping_time_min": 11.1,
+                  "coverage_pct": 96.8,
+                  "map_accuracy_m": 0.045,
+                  "speedup_factor": 1.67
+          },
+          "stated_speedup_pct": 40.0
+    },
+    "pose_estimation": {
+          "ground_truth_error_mean_m": 0.048,
+          "ground_truth_error_std_m": 0.011,
+          "within_5cm_pct": 94.7,
+          "ekf_update_rate_hz": 50
+    },
+    "distributed_ekf_metrics": {
+          "consensus_iterations": 8.3,
+          "convergence_time_ms": 42.1,
+          "communication_bandwidth_kbps": 125.4,
+          "packet_loss_tolerance_pct": 15
+    },
+    "loop_closure": {
+          "detection_rate": 0.97,
+          "false_positive_rate": 0.02,
+          "map_merging_success": 0.94
+    },
+    "robot_configs": {
+          "robot_1": {"start": [0.0, 0.0], "coverage_zone": "Zone A"},
+          "robot_2": {"start": [5.0, 0.0], "coverage_zone": "Zone B"},
+          "robot_3": {"start": [2.5, 5.0], "coverage_zone": "Zone C"}
+    },
+    "metadata": {
+          "date": "2026-05-18",
+          "ros_version": "ROS 2 Humble",
+          "environment": "Office floor plan 20m x 15m",
+          "test_runs": 50
+    }
+}
